@@ -1,9 +1,9 @@
 import React from 'react'
 import lodash from 'lodash'
-import { getUsers } from  '@/apis/user'
+import { getUsers } from  '@/services/user'
 import Carousel from './Sprites/Carousel'
 
-const getListFromApi = async () => {
+const getListFromService = async () => {
   let error, users
   try {
     const result = await getUsers()
@@ -24,7 +24,7 @@ export default function _ (props) {
   React.useEffect(() => {
     ( async () => {
       setIsLoading(true)
-      const [error, users] = await getListFromApi()
+      const [error, users] = await getListFromService()
       if (error) {
         setError(error)
       }

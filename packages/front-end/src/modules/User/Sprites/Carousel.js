@@ -1,7 +1,6 @@
 import React from 'react'
+import CarouselSlideItem from './CarouselItem'
 import './Carousel.scss'
-
-const slideWidth = 30
 
 export default function _ ({ users }) {
   const items = fromUsers(users)
@@ -22,54 +21,6 @@ const fromUsers = (users) => {
 
 const sleep = (ms = 0) => {
     return new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-const createItem = (items, length, position, idx) => {
-  const item = {
-      styles: {
-          transform: `translateX(${position * slideWidth}rem)`,
-      },
-      user: items[idx].user,
-  }
-
-  switch (position) {
-      case length - 1:
-      case length + 1:
-          item.styles = {...item.styles, filter: 'grayscale(1)'}
-          break
-      case length:
-          break
-      default:
-          item.styles = {...item.styles, opacity: 0}
-          break
-  }
-
-  return item
-}
-
-const CarouselSlideItem = ({items, length, pos, idx, activeIdx}) => {
-    const item = createItem(items, length, pos, idx, activeIdx)
-    const {
-        user: { 
-          title,
-          picture,
-          firstName,
-          lastName,
-          id,
-          email
-        }
-    } = item 
-    return (
-        <li key={id} className="carousel__slide-item" style={item.styles}>
-            <div className="carousel__slide-item-img-link">
-                <img src={picture} alt={`${title} ${lastName} ${firstName}`} />
-            </div>
-            <div className="carousel-slide-item__body">
-                <h4>{`${title} ${lastName} ${firstName}`}</h4>
-                <p>{email}</p>
-            </div>
-        </li>
-    )
 }
 
 function Carousel ({ items, length, keys }) {
