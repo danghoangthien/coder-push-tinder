@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "name": "cp-tinder",
+  "version": "1.0",
+  "description": "Coder Push Tinder Challenge",
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build": "gulp build --silent",
+    "build:ui": "gulp build:ui --silent",
+    "start": "concurrently \"npm:start:api\" \"npm:start:ui\"",
+    "start:api": "yarn workspace api start",
+    "start:ui": "yarn workspace frontend start"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "danghoangthien@gmail.com",
+  "license": "Apache-2.0",
+  "config": {
+  },
+  "devDependencies": {
+    "npm-check": "^5.9.0"
+  },
+  "resolutions": {
+    "packages/ui/jest": "26.6.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "log-symbols": "^3.0.0",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.3",
+    "uuid": "^3.3.3"
+  }
+}
