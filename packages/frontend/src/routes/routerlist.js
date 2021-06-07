@@ -1,8 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import MainPage from '@/pages/MainPage'
-import UserList from '@/pages/User/SummaryList'
-import TrendingUser from '@/pages/User/Trending'
+import SummaryListPage from '@/pages/User/SummaryListPage'
+import RandomPage from '@/pages/User/RandomPage'
 
 const routerList = [
   {
@@ -12,17 +12,17 @@ const routerList = [
     routes: [
       {
         name: 'Users',
-        path: '/users',
-        component: UserList
+        path: '/users/summart',
+        component: SummaryListPage
       },
       {
         name: 'Random Users',
-        path: '/users/trending',
-        component: TrendingUser
+        path: '/users/random',
+        component: RandomPage
       },
       {
         path: '/*',
-        component: () => <Redirect path='/*' to='/users/trending' />
+        component: () => <Redirect path='/*' to='/users/random' />
       }
     ]
   }

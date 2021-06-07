@@ -9,7 +9,6 @@ import routerList from './routerlist'
 export const history = createBrowserHistory()
 
 function Routing (props) {
-
   return (
     <Router history={history} >
       <RenderRouter routes={routerList} />

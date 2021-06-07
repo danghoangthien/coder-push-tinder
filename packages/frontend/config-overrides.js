@@ -18,6 +18,7 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true
   }),
+  // useEslintRc(),
   (config, env) => {
     config.resolve = {
       alias: {
