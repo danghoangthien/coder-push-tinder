@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import CarouselSlideItem from './CarouselItem'
 import './Carousel.scss'
 
-export default function CarouselContainer ({ users }) {
+export default function CarouselContainer ({ users, updateUser }) {
   const items = fromUsers(users)
   const length = items.length
   items.push(...items)
   const keys = Array.from(Array(items.length).keys())
-  return <Carousel items={items} length={length} keys={keys} />
+  return <Carousel items={items} length={length} keys={keys} updateUser={updateUser} />
 }
 
 const fromUsers = (users) => {
@@ -23,7 +23,7 @@ const sleep = (ms = 0) => {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-function Carousel ({ items, length, keys }) {
+function Carousel ({ items, length, keys, updateUser }) {
   const [carouselItems, setCarouselItems] = React.useState(keys)
   const [isTicking, setIsTicking] = React.useState(false)
   const [activeIdx, setActiveIdx] = React.useState(0)
@@ -78,6 +78,7 @@ function Carousel ({ items, length, keys }) {
                 idx={i}
                 pos={pos}
                 activeIdx={activeIdx}
+                updateUser={updateUser}
               />
             ))}
           </ul>
@@ -100,11 +101,13 @@ function Carousel ({ items, length, keys }) {
 }
 
 CarouselContainer.propTypes = {
-  users: PropTypes.array
+  users: PropTypes.array,
+  updateUser: PropTypes.func
 }
 
 Carousel.propTypes = {
   items: PropTypes.array,
   length: PropTypes.number,
-  keys: PropTypes.array
+  keys: PropTypes.array,
+  updateUser: PropTypes.func
 }

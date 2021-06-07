@@ -13,6 +13,7 @@ import {
   getUser as getUserFromLocal,
   setUser as setUserFromLocal
 } from '@/common/userData'
+import { calculateAge } from '@/common/utils'
 import { getUser as getUserFromApi } from '@/services/user'
 
 const slideWidth = 30
@@ -43,34 +44,31 @@ const createItem = (items, length, position, idx) => {
   return item
 }
 
-const getUserFromService = async (id) => {
-  let error, user
+const getUserFromService = async (user) => {
+  let error, fullUser
   try {
-    const result = await getUserFromApi(id)
-    user = result.data
-    const localUser = getUserFromLocal(id) || {}
-    user = {
-      ...user,
-      ...localUser
+    const result = await getUserFromApi(user.id)
+    fullUser = {
+      ...result.data,
+      ...user
     }
   } catch (err) {
     error = err
   }
-  return [error, user]
+  return [error, fullUser]
 }
 
-export default function CarouselItem ({ items, length, pos, idx, activeIdx }) {
+export default function CarouselItem ({ items, length, pos, idx, activeIdx, updateUser }) {
   const item = createItem(items, length, pos, idx, activeIdx)
   let {
     user
   } = item
-
   const [error, setError] = React.useState(null)
   const [fullUser, setFullUser] = React.useState(null)
 
   React.useEffect(() => {
     (async () => {
-      const [error, fullUser] = await getUserFromService(user.id)
+      const [error, fullUser] = await getUserFromService(user)
       if (error) {
         setError(error)
       }
@@ -79,6 +77,15 @@ export default function CarouselItem ({ items, length, pos, idx, activeIdx }) {
       }
     })()
   }, [])
+
+  React.useEffect(() => {
+    if (fullUser) {
+      setFullUser({
+        ...fullUser,
+        ...user
+      })
+    }
+  }, [user])
 
   const storeUserStatus = (id, status) => {
     let userInStorage
@@ -91,6 +98,10 @@ export default function CarouselItem ({ items, length, pos, idx, activeIdx }) {
     }
     setUserFromLocal(id, userInStorage)
     setFullUser({
+      ...fullUser,
+      ...userInStorage
+    })
+    updateUser({
       ...fullUser,
       ...userInStorage
     })
@@ -117,19 +128,20 @@ export default function CarouselItem ({ items, length, pos, idx, activeIdx }) {
     lastName,
     id,
     email,
-    status
+    status,
+    dateOfBirth
   } = fullUser
-
+  const age = calculateAge(dateOfBirth)
   return (
     <li key={id} className='carousel__slide-item' style={item.styles}>
       {
         !error ? (
           <>
             <div className='carousel__slide-item-img-link'>
-              <img src={picture} alt={`${title} ${lastName} ${firstName}`} />
+              <img src={picture} alt={`${firstName}`} />
             </div>
             <div className='carousel-slide-item__body'>
-              <h4>{`${title} ${lastName} ${firstName}`}</h4>
+              <h4>{`${title} ${lastName} ${firstName} (${age})`}</h4>
               <p>{email}</p>
               <div className='actions'>
                 <div className='action'>
@@ -174,5 +186,6 @@ CarouselItem.propTypes = {
   length: PropTypes.number,
   pos: PropTypes.number,
   idx: PropTypes.number,
-  activeIdx: PropTypes.number
+  activeIdx: PropTypes.number,
+  updateUser: PropTypes.func
 }
