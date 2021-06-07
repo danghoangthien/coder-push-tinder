@@ -7,11 +7,11 @@ In the project directory, you can :
 
 Start frontend by:
 
-### `yarn workspace @coder-push-tinder/frontend start`
+### `yarn workspace frontend start`
 
 Start api by:
 
-### `yarn workspace @coder-push-tinder/api start (to be implemented)`
+### `yarn workspace api start (to be implemented)`
 
 Start both by:
 
