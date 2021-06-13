@@ -10,11 +10,9 @@
     ]
   },
   "scripts": {
-    "build": "gulp build --silent",
-    "build:ui": "gulp build:ui --silent",
-    "start": "concurrently \"npm:start:api\" \"npm:start:ui\"",
+    "start": "concurrently \"npm:start:api\" \"npm:start:frontend\"",
     "start:api": "yarn workspace api start",
-    "start:ui": "yarn workspace frontend start"
+    "start:frontend": "yarn workspace frontend start"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,121 @@
+body{
+  font-family: Montserrat, sans-serif;
+  background: #99a682;
+}
+.user-container{
+  user-select: none;
+  margin: 100px auto;
+  background: #778959;
+  color: #fff;
+  border-radius: 5px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,.75);
+  min-height: 390px;
+}
+.cover-photo{
+  background: url(https://images.unsplash.com/photo-1575554215327-b0b6d66a0f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80);
+  height: 160px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.profile{
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  margin: 93px 0 0 -175px;
+  border: 1px solid #d2b8a0;
+  padding: 7px;
+  background: #d2b8a0;
+}
+
+.profile-name{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 27px 0 0 120px;
+}
+
+.about{
+  margin-top: 35px;
+  margin-left: 35px;
+  line-height: 28px;
+  text-align: left;
+}
+
+p.about:first-letter {
+  text-transform:capitalize;
+}
+
+button{
+  margin: 10px 0 40px 0;
+}
+
+.msg-btn, .follow-btn{
+  background: #03bfbc;
+  border: 1px solid #03bfbc;
+  padding: 10px 25px;
+  color: #231e39;
+  border-radius: 3px;
+  font-family: Montserrat, sans-serif;
+  cursor: pointer;
+}
+
+.follow-btn{
+  margin-left: 10px;
+  background: transparent;
+  color: #02899c;
+}
+
+.follow-btn:hover{
+  color: #231e39;
+  background: #03bfbc;
+  transition: .5s;
+}
+
+.container i{
+  padding-left: 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.container i:hover{
+  color: #03bfbc;
+}
+
+.actions{
+  display: flex;
+  padding: 15px 0 15px 0;
+  background: #d2d1a0;
+  
+  .action{
+    width: 50%;
+  }
+  .action:hover{
+    cursor: pointer;
+  }
+}
+
+.user-navigation{
+  font-size: 40px;
+  height: 25px;
+  
+  span:hover{
+    cursor: pointer;
+  }
+  
+  span.prev {
+    position: relative;
+    left: -200px;
+    top: -160px;
+  }
+  
+  span.next {
+    position: relative;
+    left: 200px;
+    top: -160px;
+  }
+  
+}

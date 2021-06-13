@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Main from '@/modules/Main'
 
-export default function MainPage ({ children }) {
+export default function MainPage({ children }) {
   return <Main>{children}</Main>
 }
 

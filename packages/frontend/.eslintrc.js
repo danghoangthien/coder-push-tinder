@@ -23,6 +23,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react/display-name': 'off',
     'react-hooks/exhaustive-deps': 'off',
-    'security/detect-object-injection': 'off'
+    'security/detect-object-injection': 'off',
+    'space-before-function-paren': ["error", "never"]
   }
 }
