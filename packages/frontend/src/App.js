@@ -5,7 +5,7 @@ import './App.css'
 import theme from './theme.js'
 import Routing from './routes'
 
-function App (props) {
+function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <Routing />

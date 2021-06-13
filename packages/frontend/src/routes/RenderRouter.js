@@ -4,7 +4,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Crumbs from './breadcrumbs'
 
-export default function RenderRouter ({ routes }) {
+export default function RenderRouter({ routes }) {
   return (
     <Switch>
       {routes.map((r, i) => {

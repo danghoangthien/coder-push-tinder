@@ -1,21 +1,34 @@
 import axios from 'axios'
-import { ENDPOINT, APP_ID } from './const'
+import { ENDPOINT, getCurrentUserId } from './const'
 
 const ENTITY = 'user'
 
-export const getUsers = async (limit = 10) => {
+const currentUserId = getCurrentUserId()
+
+export const getUsers = async(limit = 10) => {
+  console.log('ENDPOINT', ENDPOINT)
   return axios.get(`${ENDPOINT}/${ENTITY}`,
     {
-      params: { limit },
-      headers: { 'app-id': APP_ID }
+      params: { limit }
     }
   )
 }
 
-export const getUser = async (id) => {
+export const getUser = async(id, baseUserId) => {
   return axios.get(`${ENDPOINT}/${ENTITY}/${id}`,
     {
-      headers: { 'app-id': APP_ID }
+      headers: { 'base_user_id': currentUserId }
+    }
+  )
+}
+
+export const reactUser = async(targetUserId, type) => {
+  return axios.post(`${ENDPOINT}/${ENTITY}/${type}`,
+    {
+      targetUserId
+    },
+    {
+      headers: { 'base_user_id': currentUserId }
     }
   )
 }

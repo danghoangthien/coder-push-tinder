@@ -1,5 +1,5 @@
 
-export function calculateAge (birthday) { // birthday is a date
+export function calculateAge(birthday) { // birthday is a date
   var today = new Date()
   var birthDate = new Date(birthday)
   var age = today.getFullYear() - birthDate.getFullYear()
