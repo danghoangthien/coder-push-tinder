@@ -11,7 +11,8 @@ export default {
     },
     routes: {
       cors: {
-        origin: ['*']
+        origin: ['*'],
+        additionalHeaders: ['base_user_id']
       },
       security: {
         hsts: true,
@@ -35,6 +36,9 @@ export default {
       },
       {
         plugin: './server/plugins/swagger'
+      },
+      {
+        plugin: './server/plugins/debugger'
       },
       {
         plugin: './apps/user',

@@ -19,7 +19,11 @@ function createModel(TableName, options = {}) {
 
     async $beforeInsert(context) {
       await super.$beforeInsert(context)
-      if (!this.id) {
+      const isIdExisted = await this.$knex().schema.hasColumn(
+        this.constructor.name,
+        'id'
+      )
+      if (!this.id && isIdExisted) {
         this.id = Key()
       }
       const isCreatedAtExisted = await this.$knex().schema.hasColumn(

@@ -3,15 +3,15 @@ const table = 'User'
 import { ObjectId } from 'bson'
 export const Key = () => new ObjectId().toHexString()
 
-const createUser = () => {
+const createUser = (index) => {
   const gender = faker.random.arrayElement(['male', 'female', 'other'])
   const title = faker.random.arrayElement(['mr', 'ms', 'mrs', 'miss', 'dr'])
   const firstName = faker.name.firstName()
   const lastName = faker.name.lastName()
   return {
-    id: Key(),
-    firstName,
-    lastName,
+    id: index === 0 ? '60c64a26d11ec6460f56e362' : Key(),
+    firstName: index === 0 ? 'DemoUser' : firstName,
+    lastName: index === 0 ? 'Just' : lastName,
     title,
     gender,
     email: `${firstName}.${lastName}@${faker.internet.domainName()}`,
@@ -23,8 +23,8 @@ const createUser = () => {
   }
 }
 
-const createUsers= (numUsers = 20) => {
-    return Array.from({length: numUsers}, createUser)
+const createUsers= (numUsers = 21) => {
+    return Array.from({length: numUsers}, (_, i) =>  createUser(i) )
 }
 
 exports.seed = async knex => {

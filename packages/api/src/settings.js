@@ -1,8 +1,8 @@
 const { env } = process
 
 export default {
-  host: env.HOST || '0.0.0.0',
-  port: env.PORT || '3000',
+  host: env.API_HOST || '0.0.0.0',
+  port: env.API_PORT|| '3000',
   prefix: '/api/v1',
   db: {
     client: env.DB_CLIENT || 'pg',

@@ -8,7 +8,7 @@ export const plugin = {
   name,
 
   async register (server) {
-    server.cache({ segment: name })
+    // server.cache({ segment: name })
 
     server.route([
       {
@@ -74,8 +74,8 @@ export const plugin = {
         handler: async(request, h) => {
           const { base_user_id: baseUserId } = request.headers
           const { targetUserId } = request.payload
-          const result = await InteractionServices.reactUser(baseUserId, targetUserId, 'like')
-          return h.response(result)
+          const data = await InteractionServices.reactUser(baseUserId, targetUserId, 'like')
+          return h.response({ data })
         }
       },
       {
@@ -89,8 +89,8 @@ export const plugin = {
         handler: async(request, h) => {
           const { base_user_id: baseUserId } = request.headers
           const { targetUserId } = request.payload
-          const result = await InteractionServices.reactUser(baseUserId, targetUserId, 'pass')
-          return h.response(result)
+          const data = await InteractionServices.reactUser(baseUserId, targetUserId, 'pass')
+          return h.response({ data })
         }
       }
     ])

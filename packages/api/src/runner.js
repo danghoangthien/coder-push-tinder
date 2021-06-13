@@ -1,5 +1,5 @@
 import { compose, initDb } from './server'
-// import logger from './logger'
+import logger from './logger'
 
 // eslint-disable-next-line
 (async() => {
@@ -7,9 +7,9 @@ import { compose, initDb } from './server'
     const server = await compose()
     await server.start()
     await initDb()
-    console.log(`Server is now listening to ${server.info.uri}`)
+    logger.info(`Server is now listening to ${server.info.uri}`)
   } catch (err) {
-    console.error(`Error occurred when starting server: ${err.message}`)
+    logger.error(`Error occurred when starting server: ${err.message}`)
     process.exit(1)
   }
 })()

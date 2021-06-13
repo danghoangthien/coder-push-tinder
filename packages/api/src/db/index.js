@@ -24,7 +24,7 @@ export const config = {
 const knex = require('knex')(config)
 
 const User = new CreateBindModel('User', knex)
-const Interaction = new CreateBindModel('Interaction', knex)
+const Interaction = new CreateBindModel('Interaction', knex, { id: ['baseUser', 'targetUser'] })
 
 const models = {
   User,
