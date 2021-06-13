@@ -11,7 +11,7 @@ Start frontend by:
 
 Start api by:
 
-### `yarn workspace api start (to be implemented)`
+### `yarn workspace api start`
 
 Start both by:
 
